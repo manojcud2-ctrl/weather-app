@@ -5,12 +5,55 @@ const capitals = [
   "Chandigarh", "Jaipur", "Gangtok", "Chennai", "Hyderabad", "Agartala", "Lucknow", "Dehradun", "Kolkata"
 ];
 
-// DOM elements
-const searchInput = document.getElementById('search');
-const refreshButton = document.getElementById('refresh');
-const loadingDiv = document.getElementById('loading');
-const errorDiv = document.getElementById('error');
-const container = document.getElementById('weather-container');
+// DOM contract validation
+
+function getRequiredElement(id) {
+  return document.getElementById(id);
+}
+
+function showDomContractError(missing) {
+  const msg = `Error: The page is missing required UI element(s): ${missing.join(', ')}. Please reload or contact support.`;
+
+  // Try to show in the designated error area first.
+  const errorEl = document.getElementById('error');
+  if (errorEl) {
+    errorEl.textContent = msg;
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  // Fallback: prepend a visible message so the user sees something even if #error is missing.
+  const root = document.body || document.documentElement;
+  if (root) {
+    const div = document.createElement('div');
+    div.id = 'error';
+    div.style.color = 'red';
+    div.textContent = msg;
+    root.prepend(div);
+  } else {
+    alert(msg);
+  }
+}
+
+// DOM elements (validated on startup)
+const searchInput = getRequiredElement('search');
+const refreshButton = getRequiredElement('refresh');
+const loadingDiv = getRequiredElement('loading');
+const errorDiv = document.getElementById('error'); // *also* used to surface DOM contract errors
+const container = getRequiredElement('weather-container');
+
+const missingElements = [];
+if (!searchInput) missingElements.push('#search');
+if (!refreshButton) missingElements.push('#refresh');
+if (!loadingDiv) missingElements.push('#loading');
+if (!errorDiv) missingElements.push('#error');
+if (!container) missingElements.push('#weather-container');
+
+if (missingElements.length > 0) {
+  showDomContractError(missingElements);
+  // Bail out to avoid runtime errors in later code.
+  throw new Error(`Missing required DOM node(s): ${missingElements.join(', ')}`);
+}
 
 // Function to fetch weather data
 async function fetchWeatherData() {

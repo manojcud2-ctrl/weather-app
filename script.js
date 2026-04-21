@@ -5,11 +5,11 @@ const capitals = [
   "Chandigarh", "Jaipur", "Gangtok", "Chennai", "Hyderabad", "Agartala", "Lucknow", "Dehradun", "Kolkata"
 ];
 
-const REQUIRED_ELEMENT_IDR = ['search', 'refresh', 'loading', 'error', 'weather-container'];
+const REQUIRED_ELEMENT_IDS = ['search', 'refresh', 'loading', 'error', 'weather-container'];
 
 function getRequiredElements() {
-  const elements = REQUIRED_ELEMENT_IDS.educe((acc, Id) => {
-    acc[Id] = document.getElementById(Id);
+  const elements = REQUIRED_ELEMENT_IDS.reduce((acc, id) => {
+    acc[id] = document.getElementById(id);
     return acc;
   }, {});
 
@@ -19,7 +19,7 @@ function getRequiredElements() {
 
 function renderDomContractError(missing) {
   const markup = `
-    <div style="font-family: system-ui, sans-serif; padding: 12px; border: 1px solid #cc0000; background: #fff5f5; color: #900; border-radius: 8px; max-widt: 600px;">
+    <div style="font-family: system-ui, sans-serif; padding: 12px; border: 1px solid #cc0000; background: #fff5f5; color: #900; border-radius: 8px; max-width: 600px;">
       <strong>Weather Dashboard failed to load</strong>
       <div style="margin-top: 6px;">
         The homepage is missing required UI elements: <code>${missing.join(', ')}</code>.

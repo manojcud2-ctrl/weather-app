@@ -416,3 +416,55 @@ Created as a simple weather dashboard application for learning purposes.
 
 **Last Updated:** April 13, 2026
 **Version:** 1.0.0
+
+---
+
+## CI/CD Status
+
+![CI/CD Pipeline](https://github.com/manojcud2-ctrl/weather-app/actions/workflows/ci-cd.yml/badge.svg)
+
+---
+
+## Deployment (Full Stack: Backend + Frontend)
+
+This app is designed to be deployed as a single Node.js service (backend + static frontend) on Render (https://render.com), which offers a free tier for web services.
+
+### 🚀 How to Deploy on Render
+
+1. **Create a free account at [Render](https://render.com/)**
+2. **Click 'New Web Service' and connect your GitHub repository**
+3. **Select your repo (`weather-app`) and use these settings:**
+   - **Environment:** Node
+   - **Build Command:** `npm install`
+   - **Start Command:** `npm start`
+   - **Root Directory:** (leave blank or `/`)
+   - **Region:** Closest to your users
+   - **Branch:** `main`
+4. **Click 'Create Web Service'**
+5. **Wait for the build and deploy to finish.**
+6. **Your app will be available at a public URL like:**
+   - `https://your-app-name.onrender.com`
+
+### 🔗 Add your Render link here after deployment:
+
+**Live App:** [https://your-app-name.onrender.com](https://your-app-name.onrender.com)
+
+---
+
+## Alternative Deployment: Cyclic.sh (Free Full-Stack Hosting)
+
+Cyclic.sh is a free platform for hosting Node.js apps (backend + static frontend) with automatic GitHub integration.
+
+### 🚀 How to Deploy on Cyclic.sh
+
+1. Go to [https://www.cyclic.sh/](https://www.cyclic.sh/)
+2. Click **"Sign in with GitHub"** and authorize Cyclic
+3. Click **"Create App"** and select your `weather-app` repository
+4. Accept the default settings (Node.js, root directory, etc.)
+5. Click **"Connect"** and wait for the build and deploy to finish
+6. Your app will be available at a public URL like:
+   - `https://your-app-name.cyclic.app`
+
+### 🔗 Add your Cyclic.sh link here after deployment:
+
+**Live App (Cyclic):** [https://your-app-name.cyclic.app](https://your-app-name.cyclic.app)

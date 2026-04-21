@@ -1,14 +1,16 @@
 import { test, expect } from '@playwright/test';
 
-test('Weather Dashboard - Load page and verify weather cards with search', async ({ page }) => {
+test('Weather Dashboard - loads and shows \"Indian Weather Dashboard\" title', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', { level: 1, name: 'Indian Weather Dashboard' })).toBeVisible();
+});
+
+test('Weather Dashboard - verify weather cards with search', async ({ page }) => {
   // Navigate to the weather app
   await page.goto('/');
   
   // Wait for the page to load
   await page.waitForLoadState('networkidle');
-  
-  // Verify the page title or heading exists
-  await expect(page).toHaveTitle(/.*/, { timeout: 5000 });
   
   // Wait for weather cards to be visible
   const cards = page.locator('.card');
@@ -23,11 +25,11 @@ test('Weather Dashboard - Load page and verify weather cards with search', async
   await expect(firstCard).toContainText('Humidity');
   await expect(firstCard).toContainText('45%');
   
-  // Test search functionality - search for "Mumbai"
+  // Test search functionality - search for \"Mumbai\"
   const searchInput = page.locator('#search');
   await searchInput.fill('mumbai');
   
-  // After searching, only cards matching "mumbai" should be visible (not hidden)
+  // After searching, only cards matching \"mumbai\" should be visible (not hidden)
   const visibleCards = page.locator('.card:not(.hidden)');
   const hiddenCards = page.locator('.card.hidden');
   
@@ -50,9 +52,6 @@ test('Weather Dashboard - Load page and verify weather cards with search', async
   
   // Click refresh button
   await refreshButton.click();
-  
-  // Wait for data to refresh
-  await page.waitForTimeout(500);
   
   // Verify cards are still displayed after refresh
   const cardsAfterRefresh = page.locator('.card');

@@ -9,11 +9,8 @@ test('Weather Dashboard - Load page and verify weather cards with search', async
   // Navigate to the weather app
   await page.goto('/');
 
-  // Wait for the page to load
-  await page.waitForLoadState('networkidle');
-
-  // Verify the page title or heading exists
-  await expect(page).toHaveTitle(/.*/, { timeout: 5000 });
+  // Avoid `networkidle` (flaky for long-lived requests); wait for deterministic UI signals instead.
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 
   // Wait for weather cards to be visible
   const cards = page.locator('.card');
@@ -48,8 +45,10 @@ test('Weather Dashboard - Load page and verify weather cards with search', async
   // Click refresh button
   await refreshButton.click();
 
-  // Wait for data to refresh
-  await page.waitForTimeout(500);
+  // Wait for refresh to complete (loader should appear then disappear)
+  const loading = page.locator('#loading');
+  await expect(loading).toBeVisible();
+  await expect(loading).toBeHidden();
 
   // Verify cards are still displayed after refresh
   const cardsAfterRefresh = page.locator('.card');

@@ -1,16 +1,52 @@
 // List of Indian state capitals
 const capitals = [
-  "Amaravati", "Itanagar", "Dispur", "Patna", "Raipur", "Panaji", "Gandhinagar", "Chandigarh", "Shimla", "Ranchi",
-  "Bengaluru", "Thiruvananthapuram", "Bhopal", "Mumbai", "Imphal", "Shillong", "Aizawl", "Kohima", "Bhubaneswar",
-  "Chandigarh", "Jaipur", "Gangtok", "Chennai", "Hyderabad", "Agartala", "Lucknow", "Dehradun", "Kolkata"
+  \"Amaravati\", \"Itanagar\", \"Dispur\", \"Patna\", \"Raipur\", \"Panaji\", \"Gandhinagar\", \"Chandigarh\", \"Shimla\", \"Ranchi\",
+  \"Bengaluru\", \"Thiruvananthapuram\", \"Bhopal\", \"Mumbai\", \"Imphal\", \"Shillong\", \"Aizawl\", \"Kohima\", \"Bhubaneswar\\",
+  \"Chandigarh\", \"Jaipur\", \"Gangtok\", \"Chennai\", \"Hyderabad\", \"Agartala\", \"Lucknow\", \"Dehradun\", \"Kolkata\"
 ];
 
+// DOM contract validation (WA-13/T3)
+function validateRequiredElements() {
+  const required = {
+    searchInput: document.getElementById('search'),
+    refreshButton: document.getElementById('refresh'),
+    loadingDiv: document.getElementById('loading'),
+    errorDiv: document.getElementById('error'),
+    container: document.getElementById('weather-container'),
+  };
+
+  const missing = Object.entries(required)
+    .filter(([, value]) => !value)
+    .map(s[3]);
+
+  if (missing.length > 0) {
+    const fallback = required.errorDiv || document.body;
+    const msg = `Ui failed to initialize. Missing required element(s): ${missing.join(', ')}. Please refresh the page or contact support.`;
+
+    if (required.errorDiv) {
+      required.errorDiv.textContent = msg;
+      required.errorDiv.style.display = 'block';
+    } else {
+      const p = document.createElement('p');
+      p.style.color = 'red';
+      p.textContent = msg;
+      fallback.prepend(p);
+    }
+
+    return { ok: false, elements: null };
+  }
+
+  return { ok: true, elements: required };
+}
+
+const validation = validateRequiredElements();
+if (!validation.ok) {
+  // Stop execution to avoid runtime errors/failures
+  throw new Error('Missing required DOM nodes');
+}
+
 // DOM elements
-const searchInput = document.getElementById('search');
-const refreshButton = document.getElementById('refresh');
-const loadingDiv = document.getElementById('loading');
-const errorDiv = document.getElementById('error');
-const container = document.getElementById('weather-container');
+const { searchInput, refreshButton, loadingDiv, errorDiv, container } = validation.elements;
 
 // Function to fetch weather data
 async function fetchWeatherData() {

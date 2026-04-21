@@ -1,8 +1,10 @@
 // List of Indian state capitals
 const capitals = [
-  "Amaravati", "Itanagar", "Dispur", "Patna", "Raipur", "Panaji", "Gandhinagar", "Chandigarh", "Shimla", "Ranchi",
-  "Bengaluru", "Thiruvananthapuram", "Bhopal", "Mumbai", "Imphal", "Shillong", "Aizawl", "Kohima", "Bhubaneswar",
-  "Chandigarh", "Jaipur", "Gangtok", "Chennai", "Hyderabad", "Agartala", "Lucknow", "Dehradun", "Kolkata"
+  "Amaravati", "Itanagar", "Dispur", "Patna", "Raipur", "Panaji", "Gandhinagar",
+  "Chandigarh", "Shimla", "Ranchi", "Bengaluru", "Thiruvananthapuram",
+  "Bhopal", "Mumbai", "Imphal", "Shillong", "Aizawl", "Kohima",
+  "Bhubaneswar", "Jaipur", "Gangtok", "Chennai", "Hyderabad",
+  "Agartala", "Lucknow", "Dehradun", "Kolkata"
 ];
 
 const REQUIRED_ELEMENT_IDS = ['search', 'refresh', 'loading', 'error', 'weather-container'];
@@ -44,16 +46,29 @@ function renderDomContractError(missing) {
   const errorDiv = elements.error;
   const container = elements['weather-container'];
 
-  // Function to fetch weather data
+  // ---- MOCK DATA GENERATOR ----
+  function getMockWeatherData() {
+    const conditions = ["Sunny", "Cloudy", "Rainy", "Humid", "Partly Cloudy"];
+
+    return capitals.map((city) => ({
+      city,
+      temp: Math.floor(Math.random() * 15) + 25, // 25–40°C
+      condition: conditions[Math.floor(Math.random() * conditions.length)],
+      humidity: Math.floor(Math.random() * 50) + 30 // 30–80%
+    }));
+  }
+
+  // ---- FETCH (MOCKED) ----
   async function fetchWeatherData() {
     try {
       loadingDiv.style.display = 'block';
       errorDiv.style.display = 'none';
-      const response = await fetch('/api/weather');
-      if (!response.ok) {
-        throw new Error('Failed to fetch weather data');
-      }
-      const data = await response.json();
+
+      // Simulate API delay
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      const data = getMockWeatherData();
+
       displayWeather(data);
     } catch (error) {
       errorDiv.textContent = 'Error loading weather data: ' + error.message;
@@ -63,31 +78,37 @@ function renderDomContractError(missing) {
     }
   }
 
-  // Function to display weather data
+  // ---- RENDER ----
   function displayWeather(data) {
-    container.innerHTML = ''; // Clear previous content
+    container.innerHTML = '';
+
     capitals.forEach((capital) => {
       const weather = data.find((item) => item.city === capital);
+
       if (weather) {
         const card = document.createElement('div');
         card.className = 'card';
+
         card.innerHTML = `
           <h3>${capital}</h3>
           <p><strong>Temperature:</strong> ${weather.temp}°C</p>
           <p><strong>Condition:</strong> ${weather.condition}</p>
           <p><strong>Humidity:</strong> ${weather.humidity}%</p>
         `;
+
         container.appendChild(card);
       }
     });
   }
 
-  // Function to filter cards based on search
+  // ---- SEARCH ----
   function filterCards() {
     const query = searchInput.value.toLowerCase();
     const cards = container.querySelectorAll('.card');
+
     cards.forEach((card) => {
       const city = card.querySelector('h3').textContent.toLowerCase();
+
       if (city.includes(query)) {
         card.classList.remove('hidden');
       } else {
@@ -96,10 +117,10 @@ function renderDomContractError(missing) {
     });
   }
 
-  // Event listeners
+  // ---- EVENTS ----
   refreshButton.addEventListener('click', fetchWeatherData);
   searchInput.addEventListener('input', filterCards);
 
-  // Load data on page load
+  // ---- INIT LOAD ----
   fetchWeatherData();
 })();

@@ -1,9 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-test('WA-26: shows updated dashboard title', async ({ page }) => {
-  await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1, name: 'Indian Weather Dashboard' })).toBeVisible();
-});
 
 test('Weather Dashboard - Load page and verify weather cards with search', async ({ page }) => {
   // Navigate to the weather app

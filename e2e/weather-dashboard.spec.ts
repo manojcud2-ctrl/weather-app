@@ -6,6 +6,8 @@ test("Weather Dashboard - Load page and verify weather cards with search", async
   // Navigate to the weather app
   await page.goto("/");
 
+  await expect(page).toHaveTitle(/IND State Capitals Weather Dashboard/);
+
   // Avoid `networkidle` (flaky for long-lived requests); wait for deterministic UI signals instead.
   await expect(
     page.getByRole("heading", { level: 1, name: "Indian Weather Dashboard" })

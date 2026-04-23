@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+// TODO: Add to group later
+
 test('WA-26: dashboard title is updated', async ({ page }) => {
   await page.goto('/');
 

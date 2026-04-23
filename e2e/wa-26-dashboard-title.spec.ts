@@ -1,3 +1,4 @@
+// TODO: Group this test with related dashboard tests later.
 import { test, expect } from '@playwright/test';
 
 /**

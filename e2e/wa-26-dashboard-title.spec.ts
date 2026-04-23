@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
  */
 
 test.describe('WA-26 - Dashboard title', () => {
-  test('shows the updated dashboard title', async ({ page }) => {
+  test('Verify dashboard title', async ({ page }) => {
     await page.goto('/');
 
     // Deterministic assertion of the primary page heading.

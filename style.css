@@ -74,3 +74,28 @@ h1 {
 .hidden {
   display: none;
 }
+
+.empty-state {
+  max-width: 520px;
+  margin: 20px auto;
+  padding: 16px;
+  border: 1px dashed #bbb;
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+  color: #333;
+}
+
+.empty-state button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.empty-state button:hover {
+  background-color: #5a6268;
+}

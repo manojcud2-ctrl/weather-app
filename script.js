@@ -7,7 +7,7 @@ const capitals = [
   "Agartala", "Lucknow", "Dehradun", "Kolkata"
 ];
 
-const REQUIRED_ELEMENT_IDS = ['search', 'refresh', 'loading', 'error', 'weather-container'];
+const REQUIRED_ELEMENT_IDS = ['search', 'refresh', 'loading', 'error', 'weather-container', 'no-results', 'clear-search'];
 
 function getRequiredElements() {
   const elements = REQUIRED_ELEMENT_IDS.reduce((acc, id) => {
@@ -45,6 +45,8 @@ function renderDomContractError(missing) {
   const loadingDiv = elements.loading;
   const errorDiv = elements.error;
   const container = elements['weather-container'];
+  const noResults = elements['no-results'];
+  const clearSearchButton = elements['clear-search'];
 
   // ---- MOCK DATA GENERATOR ----
   function getMockWeatherData() {
@@ -99,27 +101,43 @@ function renderDomContractError(missing) {
         container.appendChild(card);
       }
     });
+
+    // Reset search state when data is re-rendered.
+    filterCards();
   }
 
   // ---- SEARCH ----
   function filterCards() {
-    const query = searchInput.value.toLowerCase();
+    const rawQuery = searchInput.value ?? '';
+    const query = rawQuery.trim().toLowerCase();
     const cards = container.querySelectorAll('.card');
+
+    let visibleCount = 0;
 
     cards.forEach((card) => {
       const city = card.querySelector('h3').textContent.toLowerCase();
 
       if (city.includes(query)) {
         card.classList.remove('hidden');
+        visibleCount += 1;
       } else {
         card.classList.add('hidden');
       }
     });
+
+    // Do not show empty-state before initial render (i.e., when there are no cards).
+    const shouldShowNoResults = cards.length > 0 && query.length > 0 && visibleCount === 0;
+    noResults.classList.toggle('hidden', !shouldShowNoResults);
   }
 
   // ---- EVENTS ----
   refreshButton.addEventListener('click', fetchWeatherData);
   searchInput.addEventListener('input', filterCards);
+  clearSearchButton.addEventListener('click', () => {
+    searchInput.value = '';
+    filterCards();
+    searchInput.focus();
+  });
 
   // ---- INIT LOAD ----
   fetchWeatherData();

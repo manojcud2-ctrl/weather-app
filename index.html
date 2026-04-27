@@ -17,76 +17,13 @@
   <div id="loading" style="display: none;">Loading weather data...</div>
   <div id="error" style="display: none; color: red;"></div>
 
+  <div id="no-results" class="empty-state hidden" aria-live="polite">
+    <p><strong>No results found</strong></p>
+    <button id="clear-search" type="button">Clear search</button>
+  </div>
+
   <div id="weather-container"></div>
 
-  <script>
-    const capitals = [
-      "Amaravati", "Itanagar", "Dispur", "Patna", "Raipur", "Panaji",
-      "Gandhinagar", "Chandigarh", "Shimla", "Ranchi", "Bengaluru",
-      "Thiruvananthapuram", "Bhopal", "Mumbai", "Imphal", "Shillong",
-      "Aizawl", "Kohima", "Bhubaneswar", "Jaipur", "Gangtok",
-      "Chennai", "Hyderabad", "Agartala", "Lucknow", "Dehradun", "Kolkata"
-    ];
-
-    const searchInput = document.getElementById("search");
-    const refreshButton = document.getElementById("refresh");
-    const loadingDiv = document.getElementById("loading");
-    const container = document.getElementById("weather-container");
-
-    function getMockWeatherData() {
-      const conditions = ["Sunny", "Cloudy", "Rainy", "Humid", "Partly Cloudy"];
-
-      return capitals.map(city => ({
-        city,
-        temp: Math.floor(Math.random() * 15) + 25,
-        condition: conditions[Math.floor(Math.random() * conditions.length)],
-        humidity: Math.floor(Math.random() * 50) + 30
-      }));
-    }
-
-    function renderData(data) {
-      container.innerHTML = "";
-
-      data.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "card";
-
-        card.innerHTML = `
-          <h3>${item.city}</h3>
-          <p><strong>Temperature:</strong> ${item.temp}°C</p>
-          <p><strong>Condition:</strong> ${item.condition}</p>
-          <p><strong>Humidity:</strong> ${item.humidity}%</p>
-        `;
-
-        container.appendChild(card);
-      });
-    }
-
-    function loadData() {
-      loadingDiv.style.display = "block";
-
-      setTimeout(() => {
-        const data = getMockWeatherData();
-        renderData(data);
-        loadingDiv.style.display = "none";
-      }, 800);
-    }
-
-    function filterCards() {
-      const query = searchInput.value.toLowerCase();
-      const cards = container.querySelectorAll(".card");
-
-      cards.forEach(card => {
-        const city = card.querySelector("h3").textContent.toLowerCase();
-        card.style.display = city.includes(query) ? "block" : "none";
-      });
-    }
-
-    refreshButton.addEventListener("click", loadData);
-    searchInput.addEventListener("input", filterCards);
-
-    // Initial load
-    loadData();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

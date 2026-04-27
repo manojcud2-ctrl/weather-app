@@ -9,7 +9,7 @@ module.exports = {
     {
       displayName: 'client',
       testEnvironment: 'jsdom',
-      testMatch: ['**/script.test.js'],
+      testMatch: ['**/script.test.js', '**/tests/**/*.spec.js'],
       collectCoverageFrom: ['script.js']
     }
   ]

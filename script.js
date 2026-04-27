@@ -7,7 +7,15 @@ const capitals = [
   "Agartala", "Lucknow", "Dehradun", "Kolkata"
 ];
 
-const REQUIRED_ELEMENT_IDS = ['search', 'refresh', 'loading', 'error', 'weather-container'];
+const REQUIRED_ELEMENT_IDS = [
+  'search',
+  'refresh',
+  'loading',
+  'error',
+  'weather-container',
+  'no-results',
+  'clear-search'
+];
 
 function getRequiredElements() {
   const elements = REQUIRED_ELEMENT_IDS.reduce((acc, id) => {
@@ -45,6 +53,8 @@ function renderDomContractError(missing) {
   const loadingDiv = elements.loading;
   const errorDiv = elements.error;
   const container = elements['weather-container'];
+  const noResults = elements['no-results'];
+  const clearSearchButton = elements['clear-search'];
 
   // ---- MOCK DATA GENERATOR ----
   function getMockWeatherData() {
@@ -99,28 +109,51 @@ function renderDomContractError(missing) {
         container.appendChild(card);
       }
     });
+
+    // Reset state after re-render so empty-state never persists across refresh/re-render.
+    filterCards();
   }
 
   // ---- SEARCH ----
   function filterCards() {
-    const query = searchInput.value.toLowerCase();
+    const query = searchInput.value.trim().toLowerCase();
     const cards = container.querySelectorAll('.card');
+
+    // Never show empty-state before initial render.
+    if (cards.length === 0) {
+      noResults.classList.add('hidden');
+      return;
+    }
+
+    let visibleCount = 0;
 
     cards.forEach((card) => {
       const city = card.querySelector('h3').textContent.toLowerCase();
 
       if (city.includes(query)) {
         card.classList.remove('hidden');
+        visibleCount++;
       } else {
         card.classList.add('hidden');
       }
     });
+
+    const shouldShowNoResults = query.length > 0 && visibleCount === 0;
+    noResults.classList.toggle('hidden', !shouldShowNoResults);
   }
 
   // ---- EVENTS ----
+  function clearSearch() {
+    searchInput.value = '';
+    filterCards();
+    searchInput.focus();
+  }
+
   refreshButton.addEventListener('click', fetchWeatherData);
   searchInput.addEventListener('input', filterCards);
+  clearSearchButton.addEventListener('click', clearSearch);
 
   // ---- INIT LOAD ----
   fetchWeatherData();
+  filterCards();
 })();

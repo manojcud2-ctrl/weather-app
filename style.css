@@ -74,3 +74,28 @@ h1 {
 .hidden {
   display: none;
 }
+
+.no-results {
+  max-width: 520px;
+  margin: 24px auto 0;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.no-results button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.no-results button:hover {
+  background-color: #545b62;
+}

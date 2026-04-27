@@ -17,6 +17,15 @@
   <div id="loading" style="display: none;">Loading weather data...</div>
   <div id="error" style="display: none; color: red;"></div>
 
+  <div
+    id="no-results"
+    class="empty-state hidden"
+    aria-live="polite"
+  >
+    <p>No results found.</p>
+    <button id="clear-search" type="button">Clear search</button>
+  </div>
+
   <div id="weather-container"></div>
 
   <script>

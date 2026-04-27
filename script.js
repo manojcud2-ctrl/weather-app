@@ -7,7 +7,15 @@ const capitals = [
   "Agartala", "Lucknow", "Dehradun", "Kolkata"
 ];
 
-const REQUIRED_ELEMENT_IDS = ['search', 'refresh', 'loading', 'error', 'weather-container'];
+const REQUIRED_ELEMENT_IDS = [
+  'search',
+  'refresh',
+  'loading',
+  'error',
+  'weather-container',
+  'no-results',
+  'clear-search'
+];
 
 function getRequiredElements() {
   const elements = REQUIRED_ELEMENT_IDS.reduce((acc, id) => {
@@ -45,6 +53,8 @@ function renderDomContractError(missing) {
   const loadingDiv = elements.loading;
   const errorDiv = elements.error;
   const container = elements['weather-container'];
+  const noResultsDiv = elements['no-results'];
+  const clearSearchButton = elements['clear-search'];
 
   // ---- MOCK DATA GENERATOR ----
   function getMockWeatherData() {
@@ -99,28 +109,46 @@ function renderDomContractError(missing) {
         container.appendChild(card);
       }
     });
+
+    // Re-apply current filter after refresh/re-render and ensure empty-state is correct.
+    filterCards();
   }
 
   // ---- SEARCH ----
   function filterCards() {
-    const query = searchInput.value.toLowerCase();
+    const query = searchInput.value.trim().toLowerCase();
     const cards = container.querySelectorAll('.card');
+
+    let visibleCount = 0;
 
     cards.forEach((card) => {
       const city = card.querySelector('h3').textContent.toLowerCase();
 
       if (city.includes(query)) {
         card.classList.remove('hidden');
+        visibleCount += 1;
       } else {
         card.classList.add('hidden');
       }
     });
+
+    const shouldShowEmptyState = query.length > 0 && visibleCount === 0;
+    noResultsDiv.classList.toggle('hidden', !shouldShowEmptyState);
   }
 
   // ---- EVENTS ----
+  function clearSearch() {
+    searchInput.value = '';
+    filterCards();
+    searchInput.focus();
+  }
+
   refreshButton.addEventListener('click', fetchWeatherData);
   searchInput.addEventListener('input', filterCards);
+  clearSearchButton.addEventListener('click', clearSearch);
 
   // ---- INIT LOAD ----
+  // Ensure empty-state never shows before any user input.
+  noResultsDiv.classList.add('hidden');
   fetchWeatherData();
 })();

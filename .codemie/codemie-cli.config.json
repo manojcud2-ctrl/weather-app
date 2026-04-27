@@ -1,0 +1,191 @@
+
+{
+  "version": 2,
+  "activeProfile": "work",
+  "profiles": {
+    "work": {
+      "codemieAssistants": [
+        {
+          "id": "ef64c1a4-a374-4d16-8dc8-135805f579bc",
+          "name": "WA Automation Test PR Review Agent",
+          "slug": "wa-automation-test-pr-review-agent",
+          "description": "An assistant that ingests a small JSON payload containing a Jira issue ID and a GitHub pull request link, then retrieves the referenced PR via the VCS toolkit, performs a structured code review, and posts actionable review comments back on the PR. It focuses on identifying correctness issues, test coverage gaps, readability/maintainability concerns, security and performance risks, and alignment with the stated context (e.g., tests added). It can summarize findings and recommend follow-up actions tied to the provided Jira ID.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.142Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "5e66696f-4bb5-4c7e-8a71-3de318928d2c",
+          "name": "WA Playwright Automation Agent",
+          "slug": "wa-playwright-automation-agent",
+          "description": "A specialized automation testing assistant focused on Playwright with TypeScript. It reviews a provided Jira story for requirements, inspects a specified GitHub Pull Request for merged changes, and then authors/updates Playwright TS test scripts directly in the repository. It validates tests by executing them via a Playwright MCP workflow, iterates until passing, and finally opens a new Pull Request containing the test additions/updates, returning the PR link as the final output.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.146Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "d9b7ed59-330d-4a21-99a2-6d406c0ff1f8",
+          "name": "WA Automation Test PR Fixer And Approver",
+          "slug": "wa-automation-test-pr-fixer-and-approver",
+          "description": "WA Automation Test PR Fixer And Approver",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.149Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "33b22c8f-8732-4e73-a971-7d7ead551550",
+          "name": "WA Jira Story Creator Agent",
+          "slug": "wa-jira-story-creator-agent",
+          "description": "WA Jira Agent",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.151Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "8dc4b534-22ae-4d69-bead-73bed324d7f1",
+          "name": "WA Jira Task Creator",
+          "slug": "wa-jira-task-creator",
+          "description": "A Jira-focused assistant that takes a JSON payload containing one or more implementation plans and automatically creates Jira subtasks under the parent Story specified by each plan’s jira_key. It maps each task entry (type, title, description, files_impacted, depends_on, scenarios_covered) into well-structured subtask fields, preserves task identifiers for traceability, and uses dependency metadata to create clear linking notes in subtask descriptions (and links when supported). It is designed to operate via the Generic Jira tool only, ensuring consistent automation for plan-to-Jira execution.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.155Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "994c50c7-cbe5-42f8-829b-7df8660317d0",
+          "name": "WA Dev Orchestrator",
+          "slug": "wa-dev-orchestrator",
+          "description": "WA Dev Orchestrator",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.157Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "5e0eeeba-65c5-479f-a1f2-17d0fe887d48",
+          "name": "WA Dev Agent",
+          "slug": "wa-dev-agent",
+          "description": "A senior-level software engineering assistant specializing in JavaScript/Node.js and HTML5/CSS full-stack development. It implements Jira stories end-to-end by retrieving a provided Jira story ID (including subtasks), extracting functional and technical requirements, detecting and following linked “Design: <confluence link>” references, and pulling approved design details and decisions from Confluence. Using this consolidated context, it produces a scoped implementation plan and applies clean, maintainable repository changes (create/update/delete files) aligned to the Jira story scope and the approved design.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.158Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "ead2fe7b-033d-4cc9-9ff9-eb82526bd501",
+          "name": "WA PR Review Agent",
+          "slug": "wa-pr-review-agent",
+          "description": "A lightweight pull request review assistant that takes a small JSON payload containing build status, a Jira issue ID, and a PR link. It fetches the referenced PR using the available VCS integration, performs a concise code review focused on correctness and obvious risks, and posts review comments only when necessary. It then returns a minimal JSON result indicating whether the PR was reviewed, whether changes were requested, and whether it was approved, while preserving the provided Jira ID.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.159Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "68bebc6a-4b6b-4815-9396-7a02ff6fa965",
+          "name": "WA User Story Generator",
+          "slug": "wa-user-story-generator",
+          "description": "The User Story & BDD Creator Agent transforms structured technical and functional review findings into clear, human-readable user stories and behavior-driven scenarios.\n\nIt analyzes identified gaps and enhancements, groups related issues into meaningful features, and generates concise user stories along with BDD-style scenarios (Given–When–Then) that describe both expected and current system behavior.\n\nThis agent acts as a bridge between code-level insights and business-readable specifications, enabling stakeholders to review, validate, and approve requirements before they are converted into actionable tasks or created in tools like Jira.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.162Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "edfda099-e810-42d2-8757-d2adb960c42d",
+          "name": "WA QA Sign Off Agent",
+          "slug": "wa-qa-sign-off-agent",
+          "description": "An automation assistant that processes an input JSON containing a Confluence test report URL, opens the report in Confluence, extracts the exact values of the fields Status, Automated validation, and Manual validation, and then applies release-gating logic. If Status is GREEN and both validations are Passed, it updates the related Jira user story status to DONE using the Generic Jira tool and returns a structured success output including the Jira ID and final ticket status. If any extracted value does not match the expected criteria, it instructs the user to review the report, complete sign-off, and inform stakeholders.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.164Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "c94b7b06-bef2-4330-ab5e-23f6a2d24e0b",
+          "name": "WA QA Test Executor",
+          "slug": "wa-qa-test-executor",
+          "description": "An automation-focused QA assistant that takes a JSON payload containing Jira ID, PR link, commit hash, and PR status; verifies whether the referenced GitHub pull request has been merged; and, if merged, executes the full test suite specifically on the Chrome browser while capturing screenshots (at minimum for newly written tests). It then produces a concise test execution summary (Total/Passed/Failed), associates each screenshot with its corresponding test case name, and publishes the results to Confluence by creating a page titled \"TestReport-<jira_id>\" in the Confluence space key \"EI\". The created Confluence page must include a clearly visible field \"Status - Under QA Review\" and the assistant outputs the created page link as JSON.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.166Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "849b199f-69a8-4231-a2e1-82a54bd303e5",
+          "name": "WA QA Orchestrator",
+          "slug": "wa-qa-orchestrator",
+          "description": "A sequential QA orchestration assistant that coordinates six subagents in a fixed, non-parallel order to drive a Jira/PR-based automation QA workflow end-to-end. It accepts an initial JSON payload containing status, jira_id, pr_link, and pr_status (merged) for the first step, then invokes each subagent one at a time in this exact sequence: (1) WA Playwright Automation Agent, (2) WA Automation Test PR Review Agent, (3) WA Automation Test PR Fixer And Approver, (4) WA QA Test Executor, (5) WA QA Sign Off Agent, (6) WA Release Notes Update Agent. After each subagent runs, the orchestrator prints that subagent’s output and forwards only a success output to the next subagent. If any subagent output is not \"status\":\"success\", the orchestrator prints the failure response and pauses—waiting for additional user input or explicit guidance to \"CONTINUE\"—and resumes the same subagent until it returns success. The orchestrator ensures strict sequential execution with no parallel invocation and maintains continuity by passing each successful response downstream.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.167Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "3d17cc8e-c923-46c7-abc9-04388f92d3a9",
+          "name": "WA Release Notes Update Agent",
+          "slug": "wa-release-notes-update-agent",
+          "description": "A specialized automation assistant that updates a Confluence release notes page when a Jira ticket reaches the \"Done\" status. It consumes a structured input payload containing status, Jira ID, ticket status, and sign-off date; retrieves the ticket description from Jira using the Generic Jira tool; and then updates the release notes table in Confluence (space key: EI) using the Generic Confluence tool. The assistant ensures the release notes table maintains four columns (\"S. No\", \"Jira ID\", \"Description\", \"Sign Off Date\"), adding a new row when needed and filling the appropriate fields. On completion it returns a minimal JSON output indicating success.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.168Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "f3105e57-c2ed-4c0d-b29d-0e2513aaa943",
+          "name": "WA PR Fixer and Approval Agent",
+          "slug": "wa-pr-fixer-and-approval-agent",
+          "description": "A pull-request workflow assistant that helps engineers address review feedback in an existing PR. It accepts a structured status payload containing a Jira ID and PR link, fetches PR review comments, applies the required code changes, and notifies the user to re-review. If the user explicitly grants approval in chat, it proceeds to approve the PR. It tracks and reports the resulting PR status alongside the original Jira ID and PR link.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.170Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "668ef576-3813-4721-9fb4-d36e9c9478f2",
+          "name": "WA Design Approval Checker",
+          "slug": "wa-design-approval-checker",
+          "description": "An automation-focused assistant that processes a JSON payload of Jira story keys mapped to Confluence approval pages. For each story, it retrieves the Confluence page content via the Generic Confluence tool, locates the \"Approval status:\" field, and determines whether the page is approved or unapproved. When approved, it uses the Generic Jira tool to update the associated Jira story description by adding a design reference in the form \"Design: <confluence_link>\". When unapproved, it performs no Jira update. The assistant returns a concise JSON result per story including Jira ID, detected approval status, and whether the Jira description was updated.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.171Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "2663939c-dd4c-43eb-8142-11d77c949634",
+          "name": "WA Design Agent",
+          "slug": "wa-design-agent",
+          "description": "An automation-focused assistant that takes a JSON payload describing created Jira stories and their task mappings, validates and associates mapped subtasks to their parent story, then produces architecture and design documentation (including diagrams/images as needed) and publishes it to Confluence for review. It uses the Generic Jira tool to find and update the relevant Jira issues (story and subtasks) to ensure correct linkage/association, and the Generic Confluence tool to create a dedicated approval page containing the generated documentation. The Confluence page is explicitly marked for review with an \"Approval status: unapproved\" line and includes all relevant Jira keys, plan identifiers, and task-to-Jira mappings to support approval workflows.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.172Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "00001b83-4535-42d9-b5e7-770e9591487e",
+          "name": "WA Planning Agent",
+          "slug": "wa-planning-agent",
+          "description": "WA Planning Agent",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.174Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "6934b182-2f08-4682-aeb4-bfdbfda0fb02",
+          "name": "WA Review Agent",
+          "slug": "analysis-agent",
+          "description": "An engineering-focused assistant that reviews the weather-app application codebase using the platform Git tools, identifies improvement opportunities, and reports them in a concise, categorized format. It can scan repository structure, inspect key files, and summarize recommended improvements grouped primarily into Functional and Technical categories, using simple descriptive bullet points rather than lengthy explanations.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.176Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "2be938eb-4892-4235-9517-fe159b100e19",
+          "name": "WA Technical Review Agent",
+          "slug": "wa-technical-review-agent",
+          "description": "An assistant specialized in performing a technical review of the GitHub repository for a \"weather-app\" project. It inspects the codebase structure, core components, and engineering practices to identify technical gaps and recommend concise, actionable enhancements. It focuses on areas such as architecture, code quality, dependency management, configuration, security, performance, testing, CI/CD, observability, documentation, and maintainability. The assistant outputs findings as a succinct bulleted list titled \"Technical review\" with brief (non-elaborative) descriptions.",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.178Z",
+          "registrationMode": "agent"
+        },
+        {
+          "id": "c0b466dd-e968-4998-bf83-389c7374b45f",
+          "name": "WA Functional Review Agent",
+          "slug": "wa-functional-review-agent",
+          "description": "A functional analysis assistant that reviews an application’s source code in a connected Git repository to identify functional gaps, missing capabilities, and enhancement opportunities. It can explore repository structure, locate feature-related modules, infer intended workflows from UI/API/service code, compare behavior across layers (frontend, backend, config), and produce a prioritized list of gaps/enhancements with concise evidence (file paths, key snippets) and actionable recommendations (what to add/change, impacted modules, and acceptance criteria-style notes).",
+          "project": "manoj_thangaraj@epam.com",
+          "registeredAt": "2026-04-27T07:25:59.180Z",
+          "registrationMode": "agent"
+        }
+      ]
+    }
+  }
+}

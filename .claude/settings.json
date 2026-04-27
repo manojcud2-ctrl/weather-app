@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); if [ -n \"$branch\" ] && [ \"$branch\" != \"main\" ] && [ \"$branch\" != \"HEAD\" ]; then echo \"[hook] branch: $branch\"; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}

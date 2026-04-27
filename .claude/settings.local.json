@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(codemie:claude-setup-audit)",
+      "Bash(git -C \"C:/Users/manoj_thangaraj/Desktop/Learning/Sample Apps/App 2 Own\" branch -a)"
+    ]
+  }
+}

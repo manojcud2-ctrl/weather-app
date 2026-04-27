@@ -51,6 +51,29 @@ h1 {
   gap: 20px;
 }
 
+.empty-state {
+  max-width: 520px;
+  margin: 10px auto 20px;
+  padding: 16px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px dashed #bbb;
+  border-radius: 8px;
+}
+
+#clear-search {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#clear-search:hover {
+  background-color: #5a6268;
+}
+
 .card {
   background-color: white;
   border: 1px solid #ddd;

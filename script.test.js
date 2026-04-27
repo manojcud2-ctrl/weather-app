@@ -18,8 +18,12 @@ describe('Weather Dashboard Functions', () => {
       <button id="refresh">Refresh</button>
       <div id="loading" style="display:none;">Loading weather data...</div>
       <div id="error" style="display:none;"></div>
+      <div id="no-results" class="empty-state hidden">
+        <p><strong>No results found</strong></p>
+        <button id="clear-search" type="button">Clear search</button>
+      </div>
     `;
-    
+
     container = document.getElementById('weather-container');
     searchInput = document.getElementById('search');
     loadingDiv = document.getElementById('loading');

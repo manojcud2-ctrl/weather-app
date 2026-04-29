@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+// TODO: Should be grouped
+
 test.describe('WA-40: Search empty-state', () => {
   test('should show empty-state and allow clearing search when query matches no cities', async ({ page }) => {
     await test.step('Setup', async () => {
